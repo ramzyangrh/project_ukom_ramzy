@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rentalin</title>
+    <title>@yield('title')Rentalin</title>
+    @yield('header')
     @vite(['resources/sass/app.scss', 'resources/sass/app.js'])
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -47,44 +48,17 @@
 
 {{-- list mobil --}}
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img src="{{ asset('images/car1.jpg') }}" class="card-img-top" alt="Car 1">
-                <div class="card-body">
-                    <h5 class="card-title">Mobil 1</h5>
-                    <p class="card-text">Deskripsi singkat tentang mobil 1.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-sm btn-outline-secondary">Detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img src="{{ asset('images/car2.jpg') }}" class="card-img-top" alt="Car 2">
-                <div class="card-body">
-                    <h5 class="card-title">Mobil 2</h5>
-                    <p class="card-text">Deskripsi singkat tentang mobil 2.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a href="#" class="btn btn-sm btn-outline-secondary">Detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- You can add more cars here -->
-    </div>
+    @yield('content')
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="{{ asset('js/scripts.js') }}"></script>
+<script src=""></script> --}}
 
 
 </body>
+<footer>
+    @yield('footer')
+</footer>
 </html>

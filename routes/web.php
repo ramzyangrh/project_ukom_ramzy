@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layout.index');
-});
-
+// Route::get('/', function () {
+//     return view('layout.index');
+// });
+// Route::get('/', [DashboardController::class, 'index']);
+// Route::get('/pmmobil', [pmmobilController::class, 'index'])->name('pmmobil.index');
