@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardownController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layout.index');
+    return view('welcome');
 });
-
+Route::get('/dashboard', [DashboardownController::class, 'index']);
+// Route::get('/pmmobil', [pmmobilController::class, 'index'])->name('pmmobil.index');
