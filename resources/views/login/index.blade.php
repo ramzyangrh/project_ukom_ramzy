@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!-- Tambahkan Bootstrap CSS -->
+    @vite(['resources/sass/app.scss', 'resources/sass/app.js'])
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        
-    </style>
 </head>
 <body class="bg-light">
     <div class="container">
