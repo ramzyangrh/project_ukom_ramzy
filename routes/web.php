@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardownController;
+use App\Http\Controllers\DashboardadmController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +18,6 @@ use App\Http\Controllers\DashboardownController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/dashboard', [DashboardownController::class, 'index']);
+Route::get('/dashboardown', [DashboardownController::class, 'index']);
 // Route::get('/pmmobil', [pmmobilController::class, 'index'])->name('pmmobil.index');
+Route::get('/dashboardadm', [DashboardadmController::class, 'index']);
