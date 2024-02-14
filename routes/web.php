@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardownController;
-<<<<<<< HEAD
 use App\Http\Controllers\DashboardadmController;
 =======
 use App\Http\Controllers\LoginController;
