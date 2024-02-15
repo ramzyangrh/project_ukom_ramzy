@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardownController;
+use App\Http\Controllers\DashboardadmController;
 use App\Http\Controllers\LoginController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,5 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/dashboardown', [DashboardownController::class, 'index']);
+// Route::get('/pmmobil', [pmmobilController::class, 'index'])->name('pmmobil.index');
+Route::get('/dashboardadm', [DashboardadmController::class, 'index']);
+Route::get('/dashboard', [DashboardownController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
 // Route::get('/pmmobil', [pmmobilController::class, 'index'])->name('pmmobil.index');

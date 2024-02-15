@@ -7,6 +7,22 @@
     @yield('header')
     @vite(['resources/sass/app.scss', 'resources/sass/app.js'])
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgb(0, 149, 255);
+        }
+
+        .img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+        }
+
+        .btn btn-danger {
+            margin-right: 5;
+        }
+    </style>
 </head>
 <body>
 

@@ -1,5 +1,5 @@
 @extends('layout.index')
-@section('title, Dashboard')
+@section('title', 'Dashboard')
 @section('content')
     <div class="row">
         <div class="col-md-4">
@@ -32,10 +32,10 @@
         </div>
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-                <img src="{{ asset('images/car2.jpg') }}" class="card-img-top" alt="Car 2">
+                <img src="{{ asset('images/car3.jpg') }}" class="card-img-top" alt="Car 3">
                 <div class="card-body">
                     <h5 class="card-title">Mobil 3</h5>
-                    <p class="card-text">Deskripsi singkat tentang mobil 2.</p>
+                    <p class="card-text">Deskripsi singkat tentang mobil 3.</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <a href="#" class="btn btn-sm btn-outline-secondary">Detail</a>
@@ -46,6 +46,4 @@
         </div>
         <!-- You can add more cars here -->
     </div>
-@endsection
-    
 @endsection
