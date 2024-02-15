@@ -6,16 +6,25 @@
     <title>@yield('title')Rentalin</title>
     @yield('header')
     @vite(['resources/sass/app.scss', 'resources/sass/app.js'])
-    <link rel="stylesheet" type="text/css" href="{!! asset('assets/css/style.css') !!}">
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
 {{-- navbar --}}
+
+<style>
+    .profile-img {
+    width: 60px; /* Adjust the width of the profile image */
+    height: 60px; /* Adjust the height of the profile image */
+    border-radius: 50%;
+    margin-right: 10px; /* Adjust the spacing between the image and the dropdown */
+}
+
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
-        <img src="{{ asset('images/logo.png') }}" alt="Rentalin" height="30">
+        <img src="{{ asset('images/logorentalin.png') }}" alt="Rentalin" height="60">
     </a>
     <a class="navbar-brand" href="#">Rentalin</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +46,7 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ asset('images/profile.jpg') }}" alt="Profile" class="profile-img">
+                    <img src="{{ asset('images/logorentalin.png') }}" alt="Profile" class="profile-img">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">Profile</a>
