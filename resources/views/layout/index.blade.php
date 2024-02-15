@@ -5,86 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')Rentalin</title>
     @yield('header')
-    @vite(['resources/sass/app.scss', 'resources/sass/app.js'])
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: rgb(0, 149, 255);
-        }
-
-        .img {
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            object-fit: cover;
-        }
-
-        .btn btn-danger {
-            margin-right: 5;
-        }
-    </style>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
 
 {{-- navbar --}}
 
 <style>
-    .profile-img {
-    width: 60px; /* Adjust the width of the profile image */
-    height: 60px; /* Adjust the height of the profile image */
-    border-radius: 50%;
-    margin-right: 10px; /* Adjust the spacing between the image and the dropdown */
-}
+
+    body {
+        background-color:aqua;
+        }
+
+    .container{
+        background-color: aliceblue;
+        padding: 5px 25px 25px 25px;
+        margin-top: 45px;
+        border-radius: 25px;
+        margin-bottom: 45px;
+    }
+
+    .imglogo{
+        padding-right: 15px;
+    }
+
+    .navbar {
+        background-color:deepskyblue;
+    }
+
+    .navbar-brand {
+        padding: 0.5rem 1rem;
+        font-size: 1.25rem;
+        line-height: inherit;
+        white-space: nowrap;
+    }
+
+    .navbar-nav {
+        flex-direction: row;
+    }
+
+    .navbar-nav .nav-link {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+    }
+
+    .navbar-nav .nav-item.dropdown {
+        position: static;
+    }
+
+    .navbar-nav .nav-item.dropdown .dropdown-menu {
+        position: absolute;
+    }
+
+    .navbar-nav.ml-auto {
+        margin-right: 0;
+    }
+
+    /* Styling Foto Profil */
+    .navbar-nav.ml-auto .nav-link img {
+        margin-right: 10px; /* Jarak antara foto profil dan tepi navbar */
+    }
+
+    .navbar-nav.ml-auto .nav-link img.rounded-circle {
+        border: 1px solid #ddd; /* Membuat border foto profil */
+    }
+
 
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<nav class="navbar navbar-expand-lg">
     <a class="navbar-brand" href="#">
-        <img src="{{ asset('images/logorentalin.png') }}" alt="Rentalin" height="60">
+        <img class="imglogo" src="{{ asset('images/logorentalin.png') }}" alt="Logo Perusahaan" height="60">
+        Rentalin
     </a>
-    <a class="navbar-brand" href="#">Rentalin</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" href="#">dashbord</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">list</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Disabled</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ asset('images/logorentalin.png') }}" alt="Profile" class="profile-img">
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Settings</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Logout</a>
-                </div>
-            </li>
+            <!-- Tambahkan link lainnya sesuai kebutuhan -->
         </ul>
     </div>
+
+    <div class="navbar-nav ml-auto">
+        <a class="nav-link" href="#">
+            <img src="{{ asset('images/logorentalin.png') }}" alt="Foto Profil" height="60" class="rounded-circle">
+        </a>
+    </div>
+    <button type="submit" class="btn btn-danger">Logout</button>
+    
 </nav>
 
 {{-- list mobil --}}
 <div class="container">
     @yield('content')
 </div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src=""></script>
-
 
 </body>
 <footer>

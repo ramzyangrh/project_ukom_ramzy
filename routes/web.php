@@ -21,6 +21,6 @@ Route::get('/', function () {
 Route::get('/dashboardown', [DashboardownController::class, 'index']);
 // Route::get('/pmmobil', [pmmobilController::class, 'index'])->name('pmmobil.index');
 Route::get('/dashboardadm', [DashboardadmController::class, 'index']);
-Route::get('/dashboard', [DashboardownController::class, 'index']);
+// Route::get('/dashboard', [DashboardownController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
 // Route::get('/pmmobil', [pmmobilController::class, 'index'])->name('pmmobil.index');
