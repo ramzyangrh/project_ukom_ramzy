@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Rental Mobil</title>
+    <title>Registrasi - Rental Mobil</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <!-- Tambahkan sumber Bootstrap Icons -->
@@ -19,15 +19,6 @@
             font-family: 'Arial', sans-serif; /* Ganti dengan font yang Anda inginkan */
             background-color: deepskyblue;
         }
-        .forgot-password-link, .register-link {
-            text-decoration: none; /* Menghapus garis bawah pada tautan */
-        }
-        .remember-me-checkbox{
-            margin-top: 10px; /* Menambahkan jarak atas antara tautan "Forgot Your Password?" dan checkbox "Remember Me" */
-        }
-        .btn-login{
-            margin-bottom: 10px; /* Menambahkan jarak atas antara tautan "Forgot Your Password?" dan checkbox "Remember Me" */
-        }
     </style>
 </head>
 <body>
@@ -35,13 +26,13 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
+                    <div class="card-header">{{ __('Registrasi') }}</div>
                     <div class="card-body">
                         <form id="loginForm" method="POST" action="">
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label">{{ __('E-Mail Address') }}</label>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Masukkan E-Mail" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror
@@ -49,7 +40,7 @@
                             <div class="mb-3 password-toggle">
                                 <label for="password" class="form-label">{{ __('Password') }}</label>
                                 <div class="input-group">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukkan Password" name="password" required autocomplete="current-password">
                                     <button type="button" class="btn btn-outline-secondary toggle-password"><i class="bi bi-eye-slash"></i></button>
                                 </div>
                                 <span id="password-error" class="text-danger"></span> <!-- Tempat untuk menampilkan pesan kesalahan -->
@@ -57,19 +48,18 @@
                                     <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="mt-3 text-start">
-                                <a href="" class="forgot-password-link">{{ __('Forgot Your Password?') }}</a>
-                            </div>
-                            <div class="form-check mb-3 remember-me-checkbox">
+                            <div class="form-check mb-3">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                 <label class="form-check-label" for="remember">{{ __('Remember Me') }}</label>
                             </div>
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary btn-login">{{ __('Login') }}</button>
+                                <button type="submit" class="btn btn-primary">{{ __('Daftar') }}</button>
                             </div>
-                            <div class="mt-3 text-start register-text"> <!-- Memindahkan ke kiri dan menambahkan jarak -->
-                                Belum punya akun? <span class="register-link"><a href="">{{ __('Daftar') }}</a></span>
-                            </div>                                                                                                                                                                                                 
+                            @if (Route::has('password.request'))
+                                <div class="mt-3 text-center">
+                                    <a href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </div>
