@@ -7,12 +7,13 @@ use App\Models\User;
 
 class DashboardadmController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::all();
-        return view('dashboardadm.index', compact('user'));
+        $keyword = $request->input('keyword');
+        $users = User::where('username', 'LIKE', "%$keyword%")->get();
+    
+        return view('dashboardadm.index', compact('users', 'keyword')); 
     }
-
     public function create()
     {
         return view('dashboardadm.create');
@@ -21,24 +22,18 @@ class DashboardadmController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:users,email',
+            'username' => 'required|unique:users',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
         ]);
     
         try {
             User::create([
-                'name' => $request->name,
+                'username' => $request->username,
                 'email' => $request->email,
                 'role' => 'pelanggan',
                 'password' => bcrypt($request->password),
-            // User::create([
-            //     'name' => "qwertyu",
-            //     'email' => "qwertyui@hgh.com",
-            //     'role' => 'pelanggan',
-            //     'password' => "sdfghjsdfgh",
-
-        ]);
+            ]);
             
             return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
         } catch (\Exception $e) {
@@ -55,7 +50,7 @@ class DashboardadmController extends Controller
     {
         $request->validate([
             'username' => 'required',
-            'email' => 'required|unique:users,email,'.$user->id,
+            'email' => 'required|unique:users,email,'.$user->username,
             'profile_image' => 'image|mimes:jpg,jpeg,png|max:2048', // Format gambar dan ukuran maksimal
         ]);
     
@@ -82,9 +77,9 @@ class DashboardadmController extends Controller
         return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
     }
     
-    public function show(User $user)
-{
-    return view('detailuser.index', compact('user'));
-}
-
-}
+    public function show($username)
+    {
+        $user = User::where('username', $username)->firstOrFail();
+        return view('detailuser.index', compact('user'));
+    }
+}    

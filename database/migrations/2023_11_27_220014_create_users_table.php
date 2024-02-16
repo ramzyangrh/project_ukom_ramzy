@@ -18,7 +18,7 @@ return new class extends Migration
             $table->char('id_penyewa', 13)->nullable();
             $table->char('id_pemilik_mobil', 12)->nullable();
             $table->string('password', 25);
-            $table->enum('role', ['admin', 'pemilik', 'pelanggan'])->de;
+            $table->enum('role', ['admin', 'pemilik', 'pelanggan']);
             $table->string('email', 100)->nullable();
             $table->string('profile_image')->nullable();
             

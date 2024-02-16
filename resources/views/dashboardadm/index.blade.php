@@ -7,21 +7,26 @@
         margin-top: 25px;
     }
 
-    /* .btn{
-        margin-top: 25px;
-    } */
-
     .cb {
         display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-top: 25px;
     }
 
-    /* Mengatur lebar tampilan list */
+    .search-form {
+        display: flex;
+        align-items: center;
+    }
+
+    .tambah {
+        margin-top: 10px;
+    }
+
     .user-list {
         width: 100%;
     }
 
-    /* Mengatur kartu user */
     .user-card {
         width: 100%;
         margin-bottom: 25px;
@@ -30,21 +35,19 @@
 
 <div class="cb">
     <div class="col-md-9">
-        <form class="form-inline search-form">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline search-form" method="GET" action="{{ route('admin.users.index') }}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
 
-    <div class="btn.tambah">
+    <div class="tambah">
         <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Tambah</a>
     </div>
 </div>
 
 <div class="user-list">
-    {{-- @dd($user) --}}
-    @foreach($user as $akun)
-    {{-- @dd($akun->username) --}}
+    @foreach($users as $akun)
     <div class="user-card">
         <div class="card mb-4 shadow-sm">
             <img src="{{ asset('images/'.$akun->image) }}" class="card-img-top" alt="{{ $akun->name }}">
