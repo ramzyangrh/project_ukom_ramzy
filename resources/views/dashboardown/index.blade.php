@@ -41,7 +41,7 @@
         </div>
 
         <div class="btn.tambah">
-            <a href="#" class="btn btn-primary">Tambah</a>
+            <a href="#" class="btn btn-primary">Tambah</a> 
         </div>
 
     </div> --}}

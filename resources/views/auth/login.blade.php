@@ -6,27 +6,26 @@
     <title>Login - Rental Mobil</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <!-- Tambahkan sumber Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         .card-header {
             text-align: center;
             font-weight: bold;
             font-size: 24px;
-            font-family: 'Arial', sans-serif; /* Ganti dengan font yang Anda inginkan */
+            font-family: 'Arial', sans-serif;
         }
         body {
-            font-family: 'Arial', sans-serif; /* Ganti dengan font yang Anda inginkan */
+            font-family: 'Arial', sans-serif; 
             background-color: deepskyblue;
         }
         .forgot-password-link, .register-link {
-            text-decoration: none; /* Menghapus garis bawah pada tautan */
+            text-decoration: none;
         }
         .remember-me-checkbox{
-            margin-top: 10px; /* Menambahkan jarak atas antara tautan "Forgot Your Password?" dan checkbox "Remember Me" */
+            margin-top: 10px; 
         }
         .btn-login{
-            margin-bottom: 10px; /* Menambahkan jarak atas antara tautan "Forgot Your Password?" dan checkbox "Remember Me" */
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -37,14 +36,11 @@
                 <div class="card">
                     <div class="card-header">{{ __('Login') }}</div>
                     <div class="card-body">
-                        <form id="loginForm" method="POST" action="">
+                        <form id="loginForm" method="POST" action="{{ route('login.authenticate') }}">
                             @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label">{{ __('E-Mail Address') }}</label>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                                @enderror
                             </div>
                             <div class="mb-3 password-toggle">
                                 <label for="password" class="form-label">{{ __('Password') }}</label>
@@ -52,10 +48,6 @@
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                                     <button type="button" class="btn btn-outline-secondary toggle-password"><i class="bi bi-eye-slash"></i></button>
                                 </div>
-                                <span id="password-error" class="text-danger"></span> <!-- Tempat untuk menampilkan pesan kesalahan -->
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
-                                @enderror
                             </div>
                             <div class="mt-3 text-start">
                                 <a href="" class="forgot-password-link">{{ __('Forgot Your Password?') }}</a>
@@ -67,7 +59,7 @@
                             <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-primary btn-login">{{ __('Login') }}</button>
                             </div>
-                            <div class="mt-3 text-start register-text"> <!-- Memindahkan ke kiri dan menambahkan jarak -->
+                            <div class="mt-3 text-start register-text">
                                 Belum punya akun? <span class="register-link"><a href="">{{ __('Daftar') }}</a></span>
                             </div>                                                                                                                                                                                                 
                         </form>
@@ -80,22 +72,12 @@
     <script>
         const togglePassword = document.querySelector('.toggle-password');
         const passwordInput = document.querySelector('#password');
-        const passwordError = document.querySelector('#password-error');
 
         togglePassword.addEventListener('click', function() {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
             this.querySelector('i').classList.toggle('bi-eye-slash');
             this.querySelector('i').classList.toggle('bi-eye');
-        });
-
-        // Validasi panjang password
-        passwordInput.addEventListener('input', function() {
-            if (passwordInput.value.length < 8) {
-                passwordError.textContent = 'Password must be at least 8 characters long.';
-            } else {
-                passwordError.textContent = '';
-            }
         });
     </script>
 </body>
