@@ -5,12 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class penyewa extends Model
+class Penyewa extends Model
 {
     use HasFactory;
-    //penyewa
-    protected $table = 'penyewa';
+
     protected $primaryKey = 'id_penyewa';
-    protected $fillable = ['nama_penyewa', 'alamat_penyewa', 'no_telepon_penyewa', 'foto_skck_penyewa', 'foto_sim_penyewa', 'foto_ktp_penyewa', 'foto_penyewa'];
-    public $timestamps = true;
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    protected $fillable = [
+        'id_penyewa',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_penyewa', 'username');
+    }
 }

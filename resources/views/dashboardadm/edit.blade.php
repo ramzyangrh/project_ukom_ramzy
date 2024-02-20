@@ -4,25 +4,24 @@
 
 <h2>Edit Pengguna</h2>
 
-<form method="POST" action="{{ route('admin.users.update', $user->id) }}" id="userForm" enctype="multipart/form-data">
+<form method="POST" action="{{ route('admin.users.update', $user->username) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
-    <div class="form-group">
-        <label for="name">Nama:</label>
-        <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
+
+    <div class="form-group row">
+        <label for="profile_image" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
+
+        <div class="col-md-6">
+            <input id="profile_image" type="file" class="form-control @error('profile_image') is-invalid @enderror" name="profile_image" accept="image/*">
+
+            @error('profile_image')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
     </div>
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
-    </div>
-    <div class="form-group">
-        <label for="profile_image">Foto Profil:</label>
-        <input type="file" class="form-control-file" id="profile_image" name="profile_image">
-        <small id="profileImageHelpBlock" class="form-text text-muted">
-            Gambar harus memiliki format .jpg, .jpeg, atau .png dan ukuran file maksimal 2MB.
-        </small>
-    </div>
-    <!-- Tambahkan field lainnya sesuai kebutuhan -->
+
     <button type="submit" class="btn btn-primary">Simpan</button>
 </form>
 

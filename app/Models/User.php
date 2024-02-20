@@ -2,41 +2,63 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
-class User extends Model
+class User extends Authenticatable
 {
-    use HasFactory;
+   
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $primaryKey = 'username';
-    protected $keyType = 'string';
     public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'username',
-        'id_admin',
-        'id_penyewa',
-        'id_pemilik_mobil',
+        'email',
         'password',
         'role',
-        'email',
-        'profile_image'
+        'profile_image',
     ];
 
-    // Relasi dengan tabel 'admin', 'penyewa', 'pemilik_mobil' sesuai foreign key yang telah ditentukan
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
     public function admin()
     {
-        return $this->belongsTo(Admin::class, 'id_admin', 'id_admin');
+        return $this->belongsTo(Admin::class, 'id_admin', 'username');
     }
 
     public function penyewa()
     {
-        return $this->belongsTo(Penyewa::class, 'id_penyewa', 'id_penyewa');
+        return $this->belongsTo(Penyewa::class, 'id_penyewa', 'username');
     }
 
     public function pemilikMobil()
     {
-        return $this->belongsTo(Pemilik_Mobil::class, 'id_pemilik_mobil', 'id_pemilik_mobil');
+        return $this->belongsTo(Pemilik_Mobil::class, 'id_pemilik_mobil', 'username');
     }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = Hash::make($password);
+    }
+
+    public function getProfileImageUrlAttribute()
+{
+    return $this->profile_image ? Storage::url($this->profile_image) : asset('images/default-profile.jpg');
+}
+
 }
