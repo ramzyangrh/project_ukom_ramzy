@@ -41,7 +41,7 @@
         </div>
 
         <div class="btn.tambah">
-            <a href="#" class="btn btn-primary">Tambah</a> 
+            <a href="#" class="btn btn-primary">Tambah</a>
         </div>
 
     </div> --}}
@@ -88,6 +88,21 @@
         </div>
     
     </div>
+
+        {{-- <!-- Jika berhasil menambahkan -->
+        @if(Session::has('success'))
+        <script>
+            alert("Mobil berhasil ditambahkan: {{ Session::get('success') }}");
+        </script>
+        @endif
+    
+        <!-- Jika gagal menambahkan -->
+        @if(Session::has('error'))
+        <script>
+            alert("Gagal menambahkan mobil: {{ Session::get('error') }}");
+        </script>
+        @endif
+         --}}
 
 
     {{-- <div class="container mt-5">

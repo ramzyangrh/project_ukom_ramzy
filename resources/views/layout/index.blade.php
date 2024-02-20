@@ -14,7 +14,7 @@
 <style>
 
     body {
-        background-color:rgb(0, 28, 105);
+        background-color:aqua;
         }
 
     .container{
@@ -61,13 +61,13 @@
         margin-right: 0;
     }
 
-
+    /* Styling Foto Profil */
     .navbar-nav.ml-auto .nav-link img {
-        margin-right: 10px; 
+        margin-right: 10px; /* Jarak antara foto profil dan tepi navbar */
     }
 
     .navbar-nav.ml-auto .nav-link img.rounded-circle {
-        border: 1px solid #ddd; 
+        border: 1px solid #ddd; /* Membuat border foto profil */
     }
     .btn-logout{
         margin-right: 15px;
@@ -85,7 +85,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/dashboardadm">dashbord</a>
+                <a class="nav-link" href="#">dashbord</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">list</a>
