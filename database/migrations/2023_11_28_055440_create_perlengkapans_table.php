@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('perlengkapan', function (Blueprint $table) {
             $table->char('id_perlengkapan', 13)->primary();
-            $table->string('no_polisi', 10);
+            $table->unsignedInteger('id_mobil');
             $table->string('nama_perlengkapan', 50);
 
             $table->timestamps();
 
-            $table->foreign('no_polisi')->references('no_polisi')->on('mobil')
+            $table->foreign('id_mobil')->references('id_mobil')->on('mobil')
                     ->cascadeondelete()->cascadeonupdate();
         });
     }

@@ -17,12 +17,17 @@
         margin-top: 25px;
     } */
 
-    .cb{
+    /* .cb{
         display: flex;
         margin-top: 25px;
-    }
+    } */
 
     .input-group-append{}
+
+/* Tambahkan margin pada input text */
+.input-group .form-control {
+    margin-right: 13px;
+}
 
 </style>
 
@@ -40,10 +45,9 @@
         </div>
 
     </div> --}}
-    
     <div class="container mt-5">
         <h1 class="text-center mb-5">Daftar Mobil</h1>
-
+    
         <div class="row mb-3">
             <div class="col-md-6">
                 <div class="input-group">
@@ -54,58 +58,37 @@
                 </div>
             </div>
             <div class="col-md-6 text-right">
-                <a href="#" class="btn btn-primary">Tambah Mobil</a>
+                <a href="{{ route('dashboardown.create') }}" class="btn btn-primary">Tambah Mobil</a>
             </div>
         </div>
-
+    
         <div class="row">
+            @foreach($mobils as $mobil)
             <div class="col-sm-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="{{ asset('images/mobil1.jpg') }}" class="card-img-top" alt="Car 1">
+                    <img src="{{ asset('images/' . $mobil->image) }}" class="card-img-top" alt="Gambar Mobil">
                     <div class="card-body">
-                        <h5 class="card-title">Mobil 1</h5>
-                        <p class="card-text">Deskripsi singkat tentang mobil 1. <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi nobis ea necessitatibus nulla blanditiis magni ab recusandae modi deleniti, repudiandae hwhwbjhwbjh</p>
+                        <h5 class="card-title">{{ $mobil->merek }}</h5>
+                        <p class="card-text">{{ $mobil->tipe }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <a href="#" class="btn btn-sm btn-outline-info">Detail</a>
+                                <!-- Tombol Hapus -->
+                                <form action="{{ route('dashboardown.destroy', $mobil->id_mobil) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Hapus</button>
+                            </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="{{ asset('images/mobil2.jpg') }}" class="card-img-top" alt="Car 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Mobil 2</h5>
-                        <p class="card-text">Deskripsi singkat tentang mobil 2. <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ex, saepe iusto dolorum distinctio corrupti veritatis aperiam illo voluptatum beatae similique repellat eaque perferendis aliquid, reiciendis commodi dolore assumenda vitae?</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-outline-info">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="{{ asset('images/mobil3.jpg') }}" class="card-img-top" alt="Car 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Mobil 3</h5>
-                        <p class="card-text">Deskripsi singkat tentang mobil 3. <br> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero error non quidem, adipisci et quibusdam corporis eum! Nam vel ut non deserunt nesciunt. Aliquid perferendis, obcaecati culpa explicabo illo et.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-outline-info">Detail</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- You can add more cars here -->
+            @endforeach
         </div>
-
+    
     </div>
+
 
     {{-- <div class="container mt-5">
         <div class="row mb-3">

@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('ulasan', function (Blueprint $table) {
             $table->char('id_ulasan', 13)->primary();
             $table->char('id_penyewa', 13);
-            $table->string('no_polisi', 10);
+            $table->unsignedInteger('id_mobil');
             $table->text('ulasan');
             $table->tinyInteger('rating');
 
             $table->timestamps();
 
             $table->foreign('id_penyewa')->references('id_penyewa')->on('penyewa')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreign('no_polisi')->references('no_polisi')->on('mobil')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('id_mobil')->references('id_mobil')->on('mobil')->cascadeOnDelete()->cascadeOnUpdate();
 
            
         });

@@ -69,13 +69,15 @@
     .navbar-nav.ml-auto .nav-link img.rounded-circle {
         border: 1px solid #ddd; /* Membuat border foto profil */
     }
+    .btn-logout{
+        margin-right: 15px;
+    }
 
-
-</style>
+</style>    
 
 
 <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{{ route('dashboardown.index') }}">
         <img class="imglogo" src="{{ asset('images/logorentalin.png') }}" alt="Logo Perusahaan" height="60">
         Rentalin
     </a>
@@ -97,7 +99,9 @@
             <img src="{{ asset('images/logorentalin.png') }}" alt="Foto Profil" height="60" class="rounded-circle">
         </a>
     </div>
-    <button type="submit" class="btn btn-danger">Logout</button>
+    <a class="nav-link" href="">
+        <button type="submit" class="btn btn-danger btn-logout">Logout</button>
+    </a>
     
 </nav>
 
