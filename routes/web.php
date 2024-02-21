@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardadmController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\DashboardownController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\MobilController;
@@ -33,3 +34,13 @@ Route::post('/mobil/store', [MobilController::class, 'store'])->name('mobil.stor
 Route::get('/mobil/{no_polisi}/edit', [MobilController::class, 'edit'])->name('mobil.edit');
 Route::put('/mobil/{no_polisi}', [MobilController::class, 'update'])->name('mobil.update');
 Route::delete('/mobil/{no_polisi}', [MobilController::class, 'destroy'])->name('mobil.destroy');
+
+
+Route::get('/dashboardown', [DashboardownController::class, 'index']);
+Route::get('/dashboardown', [DashboardownController::class, 'index'])->name('dashboardown.index');
+Route::post('/dashboardown', [DashboardownController::class, 'store'])->name('dashboardown.store');
+Route::get('/dashboardown/create', [DashboardownController::class, 'create'])->name('dashboardown.create');
+Route::delete('/dashboardown/{mobil}', [DashboardownController::class, 'destroy'])->name('dashboardown.destroy');
+
+Route::get('/detailmobil', [DetailController::class, 'index'])->name('detailmobil.index');
+
