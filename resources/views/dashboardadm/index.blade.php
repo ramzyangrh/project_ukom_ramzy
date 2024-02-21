@@ -35,12 +35,14 @@
 
 <div class="container">
     <div class="cb">
+        <div>
         <form method="POST" action="{{ route('admin.users.store') }}">
             @csrf
        
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+        </div>
         <div class="tambah">
             <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Tambah</a>
         </div>
