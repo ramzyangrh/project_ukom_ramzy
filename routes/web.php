@@ -18,15 +18,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/users', [DashboardadmController::class, 'store'])->name('admin.users.store');
     Route::get('/admin/users/{user}', [DashboardadmController::class, 'show'])->name('admin.users.show');
     Route::get('/admin/users/{user}/edit', [DashboardadmController::class, 'edit'])->name('admin.users.edit');
-    Route::put('/admin/users/{user}', [DashboardadmController::class, 'update'])->name('admin.users.update');
     Route::delete('/admin/users/{user}', [DashboardadmController::class, 'destroy'])->name('admin.users.destroy');
     Route::get('/admin/users/{user}/edit', [DashboardadmController::class, 'edit'])->name('admin.users.edit');
+    Route::put('/admin/users/{username}', [DashboardadmController::class, 'update'])->name('admin.users.update');
+
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-
-Route::get('/mobils',[MobilController::class, 'index'])->name('mobils.index');
 Route::get('/mobil', [MobilController::class, 'index'])->name('mobil.index');
-
-
+Route::get('/mobil/create', [MobilController::class, 'create'])->name('mobil.create');
+Route::post('/mobil/store', [MobilController::class, 'store'])->name('mobil.store');
+Route::get('/mobil/{no_polisi}/edit', [MobilController::class, 'edit'])->name('mobil.edit');
+Route::put('/mobil/{no_polisi}', [MobilController::class, 'update'])->name('mobil.update');
+Route::delete('/mobil/{no_polisi}', [MobilController::class, 'destroy'])->name('mobil.destroy');

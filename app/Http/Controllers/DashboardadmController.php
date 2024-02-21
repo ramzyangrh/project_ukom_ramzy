@@ -28,21 +28,23 @@ class DashboardadmController extends Controller
         return view('dashboardadm.edit', compact('user'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, $username)
     {
+        $user = User::where('username', $username)->firstOrFail();
+    
         $request->validate([
-            'username' => 'required|string|max:255|unique:users,username,'.$user->username,
+            'username' => 'required|string|max:255|unique:users,username,'.$username,
             'email' => 'required|string|email|max:255|unique:users,email,'.$user->email,
             'password' => 'nullable|string|min:8',
             'profile_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'role' => 'required|string|in:penyewa,pemilik_mobil','admin',
+            'role' => 'required|string|in:penyewa,pemilik_mobil,admin',
         ]);
-
+    
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = $request->password ? Hash::make($request->password) : $user->password;
         $user->role = $request->role;
-
+    
         if ($request->hasFile('profile_image')) {
             $profileImagePath = $user->profile_image;
             if ($profileImagePath && Storage::disk('public')->exists($profileImagePath)) {
@@ -52,12 +54,11 @@ class DashboardadmController extends Controller
             $profileImagePath = $profileImage->storeAs('profile_images', $user->username.'.'.$profileImage->getClientOriginalExtension(), 'public');
             $user->profile_image = $profileImagePath;
         }
-
+    
         $user->save();
-
+    
         return redirect()->route('admin.dashboard')->with('success', 'User berhasil diupdate');
-}
-
+    }
 public function create()
 {
     return view('dashboardadm.create');
@@ -102,13 +103,19 @@ public function store(Request $request)
     {
         if ($user->role == 'admin') {
             $admin = Admin::where('id_admin', $user->username)->first();
-            $admin->delete();
+            if ($admin) {
+                $admin->delete();
+            }
         } elseif ($user->role == 'penyewa') {
             $penyewa = Penyewa::where('id_penyewa', $user->username)->first();
-            $penyewa->delete();
+            if ($penyewa) {
+                $penyewa->delete();
+            }
         } elseif ($user->role == 'pemilik_mobil') {
             $pemilik_mobil = Pemilik_Mobil::where('id_pemilik_mobil', $user->username)->first();
-            $pemilik_mobil->delete();
+            if ($pemilik_mobil) {
+                $pemilik_mobil->delete();
+            }
         }
     
         $user->delete();

@@ -11,5 +11,3 @@ class Mobil extends Model
     protected $fillable = ['foto_stnk_mobil', 'status_ketersediaan', 'detail_mobil'];
     public $timestamps = true;
 }
-
-//'foto_stnk_mobil', 'status_ketersediaan', 'detail_mobil',
