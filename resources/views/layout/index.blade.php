@@ -15,7 +15,7 @@
 <style>
 
     body {
-        background-color:aqua;
+        background-color:rgb(0, 28, 105);
         }
 
 
@@ -83,23 +83,21 @@
         margin-right: 0;
     }
 
-    /* Styling Foto Profil */
+
     .navbar-nav.ml-auto .nav-link img {
-        margin-right: 10px; /* Jarak antara foto profil dan tepi navbar */
+        margin-right: 10px; 
     }
 
     .navbar-nav.ml-auto .nav-link img.rounded-circle {
-        border: 1px solid #ddd; /* Membuat border foto profil */
-    }
-    .btn-logout{
-        margin-right: 15px;
+        border: 1px solid #ddd; 
     }
 
-</style>    
+
+</style>
 
 
 <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="{{ route('dashboardown.index') }}">
+    <a class="navbar-brand" href="#">
         <img class="imglogo" src="{{ asset('images/logorentalin.png') }}" alt="Logo Perusahaan" height="60">
         Rentalin
     </a>
@@ -107,7 +105,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">dashbord</a>
+                <a class="nav-link" href="/dashboardadm">dashbord</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">list</a>
@@ -120,17 +118,10 @@
             <img src="{{ asset('images/logorentalin.png') }}" alt="Foto Profil" height="60" class="rounded-circle">
         </a>
     </div>
-<<<<<<< HEAD
     <form method="POST" action="{{ route('logout') }}">
         @csrf
         <button type="submit" class="btn btn-danger ml-3" id="logout-btn">Logout</button>
     </form>
-=======
-    <a class="nav-link" href="">
-        <button type="submit" class="btn btn-danger btn-logout">Logout</button>
-    </a>
-    
->>>>>>> 0cc780f39503d03488748a176ffb421caba09d6a
 </nav>
 
 {{-- list mobil --}}
