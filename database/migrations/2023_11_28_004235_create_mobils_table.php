@@ -15,12 +15,10 @@ return new class extends Migration
             $table->increments('id_mobil');
             $table->char('id_pemilik_mobil', 12)->nullable()->default(null);
             $table->char('id_model_mobil', 13)->nullable()->default(null);
-            $table->string('merek'); // Tambahkan kolom 'brand' dengan tipe string
-            $table->text('tipe'); // Tambahkan kolom 'details'
-            $table->enum('status', ['Tersedia', 'Tidak Tersedia']); // Tambahkan kolom 'availability' dengan tipe enum
-            $table->string('image',50); // Tambahkan kolom 'image'
-            // $table->string('foto_stnk_mobil', 50);
-            // $table->enum('status_ketersediaan', ['tersedia', 'sedang dipakai', 'sedang rusak']);
+            $table->string('merek'); 
+            $table->text('tipe'); 
+            $table->enum('status', ['Tersedia', 'Tidak Tersedia']); 
+            $table->string('image',50); 
             $table->timestamps();
 
             $table->foreign('id_pemilik_mobil')->references('id_pemilik_mobil')->on('pemilik_mobil')

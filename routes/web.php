@@ -1,44 +1,35 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardownController;
 use App\Http\Controllers\DashboardadmController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\MobilController;
 
-Route::get('/', function () {
-    return view('welcome');
+// Authentication routes
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.authenticate');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboardadm', [DashboardadmController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/users/create', [DashboardadmController::class, 'create'])->name('admin.users.create');
+    Route::post('/admin/users', [DashboardadmController::class, 'store'])->name('admin.users.store');
+    Route::get('/admin/users/{user}', [DashboardadmController::class, 'show'])->name('admin.users.show');
+    Route::get('/admin/users/{user}/edit', [DashboardadmController::class, 'edit'])->name('admin.users.edit');
+    Route::delete('/admin/users/{user}', [DashboardadmController::class, 'destroy'])->name('admin.users.destroy');
+    Route::get('/admin/users/{user}/edit', [DashboardadmController::class, 'edit'])->name('admin.users.edit');
+    Route::put('/admin/users/{username}', [DashboardadmController::class, 'update'])->name('admin.users.update');
+
 });
-Route::get('/dashboardown', [DashboardownController::class, 'index'])->name('dashboardown.index');
-Route::post('/dashboardown', [DashboardownController::class, 'store'])->name('dashboardown.store');
-Route::get('/dashboardown/create', [DashboardownController::class, 'create'])->name('dashboardown.create');
-Route::delete('/dashboardown/{mobil}', [DashboardownController::class, 'destroy'])->name('dashboardown.destroy');
 
-Route::get('/detailmobil', [DetailController::class, 'index'])->name('detailmobil.index');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Route::get('/pmmobil', [pmmobilController::class, 'index'])->name('pmmobil.index');
-Route::get('/dashboardadm', [DashboardadmController::class, 'index']);
-Route::get('/admin/users', [DashboardadmController::class, 'index'])->name('admin.users.index');
-Route::get('/admin/users/create', [DashboardadmController::class, 'create'])->name('admin.users.create');
-Route::post('/admin/users', [DashboardadmController::class, 'store'])->name('admin.users.store');
-Route::get('/admin/users/{user}/edit', [DashboardadmController::class, 'edit'])->name('admin.users.edit');
-Route::put('/admin/users/{user}', [DashboardadmController::class, 'update'])->name('admin.users.update');
-Route::delete('/admin/users/{user}', [DashboardadmController::class, 'destroy'])->name('admin.users.destroy');
-Route::get('/admin/users/{user}', [DashboardadmController::class, 'show'])->name('admin.users.show');
-
-// Route::get('/dashboard', [DashboardownController::class, 'index']);
-Route::get('/login', [LoginController::class, 'index']);
-route::get('/register', [RegisterController::class, 'index']);
-// Route::get('/pmmobil', [pmmobilController::class, 'index'])->name('pmmobil.index');
-
+Route::get('/mobil', [MobilController::class, 'index'])->name('mobil.index');
+Route::get('/mobil/create', [MobilController::class, 'create'])->name('mobil.create');
+Route::post('/mobil/store', [MobilController::class, 'store'])->name('mobil.store');
+Route::get('/mobil/{no_polisi}/edit', [MobilController::class, 'edit'])->name('mobil.edit');
+Route::put('/mobil/{no_polisi}', [MobilController::class, 'update'])->name('mobil.update');
+Route::delete('/mobil/{no_polisi}', [MobilController::class, 'destroy'])->name('mobil.destroy');

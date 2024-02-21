@@ -14,6 +14,7 @@ class User extends Authenticatable
 {
    
     use HasApiTokens, HasFactory, Notifiable;
+    protected $table ='users';
 
     protected $primaryKey = 'username';
     public $incrementing = false;
@@ -40,17 +41,17 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Admin::class, 'id_admin', 'username');
     }
-
+    
     public function penyewa()
     {
         return $this->belongsTo(Penyewa::class, 'id_penyewa', 'username');
     }
-
+    
     public function pemilikMobil()
     {
         return $this->belongsTo(Pemilik_Mobil::class, 'id_pemilik_mobil', 'username');
     }
-
+    
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = Hash::make($password);
