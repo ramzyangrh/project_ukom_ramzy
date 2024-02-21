@@ -6,6 +6,15 @@
     .container{
         background-color: aqua;
     }
+
+    .form-group {
+        margin-bottom: 20px; /* Memberikan jarak 20px di bawah setiap form-group */
+    }
+
+    .btn {
+        margin-top: 20px; /* Memberikan jarak 20px di atas tombol */
+    }
+
 </style>
 
 
@@ -20,11 +29,11 @@
                         @csrf
                         <div class="form-group">
                             <label for="merek">Merek Mobil:</label>
-                            <input type="text" class="form-control" id="merek" name="merek" required>
+                            <input type="text" class="form-control" id="merek" name="merek" placeholder="Masukan Merek Mobil" required>
                         </div>
                         <div class="form-group">
                             <label for="tipe">Tipe Mobil:</label>
-                            <input type="text" class="form-control" id="tipe" name="tipe" required>
+                            <input type="text" class="form-control" id="tipe" name="tipe" placeholder="Masukan Tipe Mobil" required>
                         </div>
                         <div class="form-group">
                             <label for="status">Status Ketersediaan:</label>
@@ -39,7 +48,7 @@
                             <input type="file" class="form-control-file" id="image" name="image" required>
                             <img id="img-preview" src="#" alt="Preview Gambar" style="max-width: 100%; margin-top: 10px; display: none;">
                         </div>
-                        <button type="submit" class="btn btn-primary">Tambahkan</button>
+                        <button type="submit" class="btn btn-success">Tambahkan</button>
                     </form>
                 </div>
             </div>

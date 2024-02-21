@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardownController;
 use App\Http\Controllers\DashboardadmController;
+use App\Http\Controllers\DetailController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 /*
@@ -23,6 +24,8 @@ Route::get('/dashboardown', [DashboardownController::class, 'index'])->name('das
 Route::post('/dashboardown', [DashboardownController::class, 'store'])->name('dashboardown.store');
 Route::get('/dashboardown/create', [DashboardownController::class, 'create'])->name('dashboardown.create');
 Route::delete('/dashboardown/{mobil}', [DashboardownController::class, 'destroy'])->name('dashboardown.destroy');
+
+Route::get('/detailmobil', [DetailController::class, 'index'])->name('detailmobil.index');
 
 // Route::get('/pmmobil', [pmmobilController::class, 'index'])->name('pmmobil.index');
 Route::get('/dashboardadm', [DashboardadmController::class, 'index']);

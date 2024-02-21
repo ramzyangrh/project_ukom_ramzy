@@ -22,12 +22,21 @@
         margin-top: 25px;
     } */
 
-    .input-group-append{}
+    /* .input-group-append{} */
 
-/* Tambahkan margin pada input text */
-.input-group .form-control {
-    margin-right: 13px;
-}
+    /* Tambahkan margin pada input text */
+    .input-group .form-control {
+        margin-right: 13px;
+    }
+
+    .btn-tambah {
+        margin-top: 50x; /* Sesuaikan jarak sesuai kebutuhan Anda */
+    }
+    
+    /* Tambahkan margin antara tombol */
+    .btn-group .btn {
+        margin-right: 10px;
+    }
 
 </style>
 
@@ -58,7 +67,7 @@
                 </div>
             </div>
             <div class="col-md-6 text-right">
-                <a href="{{ route('dashboardown.create') }}" class="btn btn-primary">Tambah Mobil</a>
+                <a href="{{ route('dashboardown.create') }}" class="btn btn-success btn-tambah">Tambah Mobil</a>
             </div>
         </div>
     
@@ -72,7 +81,9 @@
                         <p class="card-text">{{ $mobil->tipe }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="#" class="btn btn-sm btn-outline-info">Detail</a>
+                                {{-- <a href="{{ route('detailmobil.index') }}" class="btn btn-sm btn-outline-info">Detail</a> --}}
+                                <button onclick="window.location.href='{{ route('detailmobil.index') }}'" class="btn btn-sm btn-outline-info">Detail</button>
+                                <button type="button" class="btn btn-sm btn-outline-primary">Edit</button>
                                 <!-- Tombol Hapus -->
                                 <form action="{{ route('dashboardown.destroy', $mobil->id_mobil) }}" method="POST">
                                 @csrf
@@ -89,7 +100,7 @@
     
     </div>
 
-        {{-- <!-- Jika berhasil menambahkan -->
+        <!-- Jika berhasil menambahkan -->
         @if(Session::has('success'))
         <script>
             alert("Mobil berhasil ditambahkan: {{ Session::get('success') }}");
@@ -102,7 +113,7 @@
             alert("Gagal menambahkan mobil: {{ Session::get('error') }}");
         </script>
         @endif
-         --}}
+        
 
 
     {{-- <div class="container mt-5">
