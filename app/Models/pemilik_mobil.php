@@ -9,9 +9,9 @@ class Pemilik_Mobil extends Model
 {
     use HasFactory;
 
+    protected $table = 'pemilik_mobil';
     protected $primaryKey = 'id_pemilik_mobil';
-    public $incrementing = false;
-    protected $keyType = 'string';
+    protected $guarded = [];
 
     protected $fillable = [
         'id_pemilik_mobil',

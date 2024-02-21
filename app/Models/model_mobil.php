@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class model_mobil extends Model
+class ModelMobil extends Model
 {
-    use HasFactory;
-    //model_mobil
     protected $table = 'model_mobil';
     protected $primaryKey = 'id_model_mobil';
-    protected $fillable = ['tipe_mobil', 'merek_mobil', 'tahun_produksi'];
-    public $timestamps = true;
+    protected $guarded = [];
+
+    public function tarif()
+    {
+        return $this->belongsTo(Tarif::class, 'id_tarif', 'id_tarif');
+    }
 }

@@ -2,15 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class mobil extends Model
+class Mobil extends Model
 {
-    use HasFactory;
-    //mobil
     protected $table = 'mobil';
     protected $primaryKey = 'no_polisi';
-    protected $fillable = ['foto_stnk_mobil', 'status_ketersediaan', 'detail_mobil'];
-    public $timestamps = true;
+    protected $fillable = ['no_polisi', 'id_pemilik_mobil', 'id_model_mobil', 'foto_stnk_mobil', 'status_ketersediaan', 'detail_mobil'];
+
+    public function pemilik()
+    {
+        return $this->belongsTo(Pemilik_Mobil::class, 'id_pemilik_mobil', 'id_pemilik_mobil');
+    }
+
+    public function model()
+    {
+        return $this->belongsTo(ModelMobil::class, 'id_model_mobil', 'id_model_mobil');
+    }
 }

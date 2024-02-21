@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardadmController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\MobilController;
 
 // Authentication routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -21,4 +22,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/admin/users/{user}', [DashboardadmController::class, 'destroy'])->name('admin.users.destroy');
     Route::get('/admin/users/{user}/edit', [DashboardadmController::class, 'edit'])->name('admin.users.edit');
 });
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+Route::get('/mobils',[MobilController::class, 'index'])->name('mobils.index');
+Route::get('/mobil', [MobilController::class, 'index'])->name('mobil.index');
+
 

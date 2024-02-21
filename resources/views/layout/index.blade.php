@@ -3,19 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')Rentalin</title>
     @yield('header')
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
 
-{{-- navbar --}}
+
 
 <style>
 
     body {
         background-color:rgb(0, 28, 105);
         }
+
+
+
+    <style>
+    .logout-form {
+    margin-top: 10px;
+    }
+
+    .logout-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer;
+    }
+
+    .logout-btn:hover {
+    background-color: #c82333;
+    }
+
 
     .container{
         background-color: aliceblue;
@@ -88,7 +110,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">list</a>
             </li>
-            <!-- Tambahkan link lainnya sesuai kebutuhan -->
         </ul>
     </div>
 
@@ -97,8 +118,10 @@
             <img src="{{ asset('images/logorentalin.png') }}" alt="Foto Profil" height="60" class="rounded-circle">
         </a>
     </div>
-    <button type="submit" class="btn btn-danger">Logout</button>
-    
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="btn btn-danger ml-3" id="logout-btn">Logout</button>
+    </form>
 </nav>
 
 {{-- list mobil --}}

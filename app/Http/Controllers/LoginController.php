@@ -29,11 +29,9 @@ class LoginController extends Controller
         ])->onlyInput('email');
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect('/login');
+        return redirect()->route('login');
     }
 }
