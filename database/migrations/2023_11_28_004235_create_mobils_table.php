@@ -12,12 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mobil', function (Blueprint $table) {
-            $table->string('no_polisi', 10)->primary();
-            $table->char('id_pemilik_mobil', 12);
-            $table->char('id_model_mobil', 13);
-            $table->string('foto_stnk_mobil', 50);
-            $table->enum('status_ketersediaan', ['tersedia', 'sedang dipakai', 'sedang rusak']);
-            $table->text('detail_mobil');
+            $table->increments('id_mobil');
+            $table->char('id_pemilik_mobil', 12)->nullable()->default(null);
+            $table->char('id_model_mobil', 13)->nullable()->default(null);
+            $table->string('merek'); // Tambahkan kolom 'brand' dengan tipe string
+            $table->text('tipe'); // Tambahkan kolom 'details'
+            $table->enum('status', ['Tersedia', 'Tidak Tersedia']); // Tambahkan kolom 'availability' dengan tipe enum
+            $table->string('image',50); // Tambahkan kolom 'image'
+            // $table->string('foto_stnk_mobil', 50);
+            // $table->enum('status_ketersediaan', ['tersedia', 'sedang dipakai', 'sedang rusak']);
             $table->timestamps();
 
             $table->foreign('id_pemilik_mobil')->references('id_pemilik_mobil')->on('pemilik_mobil')

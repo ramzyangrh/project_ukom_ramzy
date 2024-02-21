@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('penyewaan', function (Blueprint $table) {
             $table->char('id_penyewaan', 12)->primary();
             $table->char('id_penyewa', 12);
-            $table->string('no_polisi', 10);
+            $table->unsignedInteger('id_mobil');
             $table->char('id_pengembalian', 12);
             $table->char('id_pembayaran', 12);
             $table->char('id_tarif', 12);
@@ -26,7 +26,7 @@ return new class extends Migration
 
             $table->foreign('id_penyewa')->references('id_penyewa')->on('penyewa')
                     ->cascadeOnDelete()->cascadeOnDelete();
-            $table->foreign('no_polisi')->references('no_polisi')->on('mobil')
+            $table->foreign('id_mobil')->references('id_mobil')->on('mobil')
                     ->cascadeOnDelete()->cascadeOnDelete();
             $table->foreign('id_pengembalian')->references('id_pengembalian')->on('pengembalian')
                     ->cascadeOnDelete()->cascadeOnDelete();
