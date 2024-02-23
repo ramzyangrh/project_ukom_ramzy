@@ -1,168 +1,70 @@
 @extends('layout.index')
-@section('title, Dashboard')
+@section('title', 'Dashboard Pemilik Mobil')
 @section('content')
 
-<style>
-    .col-sm-4{
-        margin-top: 25px;
-    }
-
-    .card-img-top {
-    /* width: 100%;
-    height: 100%; */
-    object-fit: cover;
-    }
-
-    /* .btn{
-        margin-top: 25px;
-    } */
-
-    /* .cb{
+    <style>
+    
+    .container {
         display: flex;
-        margin-top: 25px;
-    } */
-
-    /* .input-group-append{} */
-
-    /* Tambahkan margin pada input text */
-    .input-group .form-control {
-        margin-right: 13px;
+        justify-content: space-around;
+        flex-wrap: wrap;
     }
 
-    .btn-tambah {
-        margin-top: 50x; /* Sesuaikan jarak sesuai kebutuhan Anda */
+    .card {
+        width: 200px;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
     }
-    
-    /* Tambahkan margin antara tombol */
-    .btn-group .btn {
-        margin-right: 10px;
+    .card:hover {
+        transform: translateY(-5px);
     }
-
-</style>
-
-    {{-- <div class="cb">
-
-        <div class="col-md-9">
-            <form class="form-inline search-form">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-
-        <div class="btn.tambah">
-            <a href="#" class="btn btn-primary">Tambah</a>
-        </div>
-
-    </div> --}}
-    <div class="container mt-5">
-        <h1 class="text-center mb-5">Daftar Mobil</h1>
+    .card i {
+        font-size: 48px;
+        margin-bottom: 10px;
+        text-align: center;
+        color: #007bff;
+    }
+    .card p {
+        text-align: center;
+        margin: 0;
+        font-size: 18px;
+    }
+    .card-link {
+        text-decoration: none;
+        color: inherit; /* to inherit parent color */
+    }
+    </style>
     
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Cari mobil...">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Cari</button>
-                    </div>
-                </div>
+    <div class="container">
+        <a href="{{ route('tambahmobilown.index') }}" class="card-link">
+            <div class="card">
+                <i class="fas fa-car"></i>
+                <p>Daftar Mobil</p>
             </div>
-            <div class="col-md-6 text-right">
-                <a href="{{ route('dashboardown.create') }}" class="btn btn-success btn-tambah">Tambah Mobil</a>
+        </a>
+        <a href="" class="card-link">
+            <div class="card">
+                <i class="fas fa-dollar-sign"></i>
+                <p>Rates</p>
             </div>
-        </div>
-    
-        <div class="row">
-            @foreach($mobils as $mobil)
-            <div class="col-sm-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="{{ asset('images/' . $mobil->image) }}" class="card-img-top" alt="Gambar Mobil">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $mobil->merek }}</h5>
-                        <p class="card-text">{{ $mobil->tipe }}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                {{-- <a href="{{ route('detailmobil.index') }}" class="btn btn-sm btn-outline-info">Detail</a> --}}
-                                <button onclick="window.location.href='{{ route('detailmobil.index') }}'" class="btn btn-sm btn-outline-info">Detail</button>
-                                <button type="button" class="btn btn-sm btn-outline-primary">Edit</button>
-                                <!-- Tombol Hapus -->
-                                <form action="{{ route('dashboardown.destroy', $mobil->id_mobil) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-outline-danger">Hapus</button>
-                            </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        </a>
+        <a href="" class="card-link">
+            <div class="card">
+                <i class="fas fa-road"></i>
+                <p>Routes</p>
             </div>
-            @endforeach
-        </div>
-    
+        </a>
+        <a href="" class="card-link">
+            <div class="card">
+                <i class="fas fa-phone"></i>
+                <p>Contact</p>
+            </div>
+        </a>
     </div>
-
-        <!-- Jika berhasil menambahkan -->
-        @if(Session::has('success'))
-        <script>
-            alert("Mobil berhasil ditambahkan: {{ Session::get('success') }}");
-        </script>
-        @endif
     
-        <!-- Jika gagal menambahkan -->
-        @if(Session::has('error'))
-        <script>
-            alert("Gagal menambahkan mobil: {{ Session::get('error') }}");
-        </script>
-        @endif
-        
-
-
-    {{-- <div class="container mt-5">
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Cari mobil...">
-            </div>
-            <div class="col-md-6 text-right">
-                <a href="#" class="btn btn-primary">Tambah Mobil</a>
-            </div>
-        </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Merek</th>
-                    <th scope="col">Model</th>
-                    <th scope="col">Tahun</th>
-                    <th scope="col">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Toyota</td>
-                    <td>Avanza</td>
-                    <td>2020</td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-sm">Detail</a>
-                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                        <button class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Honda</td>
-                    <td>CRV</td>
-                    <td>2019</td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-sm">Detail</a>
-                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                        <button class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                </tr>
-                <!-- Tambahkan baris untuk setiap mobil -->
-            </tbody>
-        </table>
-    </div> --}}
-
-
-
-    
-@endsection
-    
+  
 @endsection

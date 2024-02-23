@@ -2,11 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardadmController;
-use App\Http\Controllers\DetailController;
+use App\Http\Controllers\DetailmobilownController;
+use App\Http\Controllers\DetailmobilpelController;
+use App\Http\Controllers\TambahmobilownController;
 use App\Http\Controllers\DashboardownController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\MobilController;
+use App\Http\Controllers\DashboardpelController;
+use App\Http\Controllers\PenyewaanController;
+
+Route::get('/', function () {
+    return view('welcome');
+    });
 
 // Authentication routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -36,11 +44,28 @@ Route::put('/mobil/{no_polisi}', [MobilController::class, 'update'])->name('mobi
 Route::delete('/mobil/{no_polisi}', [MobilController::class, 'destroy'])->name('mobil.destroy');
 
 
-Route::get('/dashboardown', [DashboardownController::class, 'index']);
+//route tambah mobil owner
+Route::get('/tambahmobilown', [TambahmobilownController::class, 'index']);
+Route::get('/tambahmobilown', [TambahmobilownController::class, 'index'])->name('tambahmobilown.index');
+Route::post('/tambahmobilown', [TambahmobilownController::class, 'store'])->name('tambahmobilown.store');
+Route::get('/tambahmobilown/create', [TambahmobilownController::class, 'create'])->name('tambahmobilown.create');
+Route::delete('/tambahmobilown/{mobil}', [TambahmobilownController::class, 'destroy'])->name('tambahmobilown.destroy');
+Route::get('/tambahmobilown/{mobil}/edit', [TambahmobilownController::class, 'edit'])->name('tambahmobilown.edit');
+Route::put('/tambahmobilown/{mobil}', [TambahmobilownController::class, 'update'])->name('tambahmobilown.update');
+
+
 Route::get('/dashboardown', [DashboardownController::class, 'index'])->name('dashboardown.index');
-Route::post('/dashboardown', [DashboardownController::class, 'store'])->name('dashboardown.store');
-Route::get('/dashboardown/create', [DashboardownController::class, 'create'])->name('dashboardown.create');
-Route::delete('/dashboardown/{mobil}', [DashboardownController::class, 'destroy'])->name('dashboardown.destroy');
 
-Route::get('/detailmobil', [DetailController::class, 'index'])->name('detailmobil.index');
 
+Route::get('/detailmobilown', [DetailmobilownController::class, 'index'])->name('detailmobilown.index');
+Route::get('/detailmobilown/{id}', [DetailmobilownController::class, 'index'])->name('detailmobilown.index');
+
+
+Route::get('/detailmobilpel', [DetailmobilpelController::class, 'index'])->name('detailmobilpel.index');
+Route::get('/detailmobilpel/{id}', [DetailmobilpelController::class, 'index'])->name('detailmobilpel.index');
+
+
+Route::get('/dashboardpel', [DashboardpelController::class, 'index'])->name('dashboardpel.index');
+
+Route::get('/penyewaan', [PenyewaanController::class, 'index'])->name('penyewaan');
+Route::post('/penyewaan', [PenyewaanController::class, 'penyewaan.strore'])->name('penyewaan.post');

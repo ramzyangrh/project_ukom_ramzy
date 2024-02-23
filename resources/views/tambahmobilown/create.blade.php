@@ -1,18 +1,14 @@
 @extends('layout.index')
-@section('title.tambah mobil')
+@section('title', 'Tambah Mobil')
 @section('content')
 
 <style>
-    .container{
+    .container {
         background-color: aqua;
     }
 
     .form-group {
         margin-bottom: 20px; /* Memberikan jarak 20px di bawah setiap form-group */
-    }
-
-    .btn {
-        margin-top: 20px; /* Memberikan jarak 20px di atas tombol */
     }
 
 </style>
@@ -25,7 +21,7 @@
                 <div class="card-header text-center"><h2 class="font-weight-bold">Tambah Mobil</h2></div>
 
                 <div class="card-body">
-                    <form action="{{ route('dashboardown.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('tambahmobilown.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="merek">Merek Mobil:</label>
@@ -46,7 +42,7 @@
                         <div class="form-group">
                             <label for="image">Gambar Mobil:</label>
                             <input type="file" class="form-control-file" id="image" name="image" required>
-                            <img id="img-preview" src="#" alt="Preview Gambar" style="max-width: 100%; margin-top: 10px; display: none;">
+                            <img id="imagePreview" src="#" alt="Preview" style="display: none; max-width: 100%; max-height: 200px; margin-top: 10px;">
                         </div>
                         <button type="submit" class="btn btn-success">Tambahkan</button>
                     </form>
@@ -58,17 +54,18 @@
 
 @endsection
 
-@push('scripts')
+@section('scripts')
 <script>
-    document.getElementById("image").addEventListener("change", function() {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById("img-preview").src = e.target.result;
-            document.getElementById("img-preview").style.display = "block";
-        };
-        reader.readAsDataURL(this.files[0]);
-    });
-</script>
-@endpush
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('imagePreview');
+            output.src = reader.result;
+            output.style.display = "block";
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
     
+    document.getElementById('image').addEventListener('change', previewImage);
+</script>
 @endsection
