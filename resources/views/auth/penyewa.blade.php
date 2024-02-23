@@ -43,7 +43,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Login Penyewa') }}</div>
                     <div class="card-body">
-                        <form id="loginForm" method="POST" action="{{ route('login_penyewa') }}">
+                        <form id="loginForm" action="{{ route('login_penyewa') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="username" class="form-label">{{ __('Username') }}</label>

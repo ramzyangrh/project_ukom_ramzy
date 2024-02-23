@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -43,18 +44,20 @@ class LoginController extends Controller
         return redirect()->route('login');
     }
 
-    function indexPenyewa(){
+    public function indexPenyewa()
+    {
         return view('auth.penyewa');
     }
 
-    function loginPenyewa(Request $request)
+    public function loginPenyewa(Request $request)
     {
+        $request->header('Accept', 'application/json');
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required'],
         ]);
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboardpel.index');
+            return redirect()->to('/dashboardpel');
         }
         return back()->withErrors([
             'username' => 'The provided credentials do not match our records.',

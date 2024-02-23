@@ -22,8 +22,8 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.authentica
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::get('/login/penyewa', [LoginController::class, 'indexPenyewa']);
-Route::post('/login/penyewa', [LoginController::class, 'loginPenyewa'])->name('login_penyewa');
-Route::get('/register/penyewa', [RegisterController::class, 'IndexPenyewa']);
+Route::post('auth/login/penyewa', [LoginController::class, 'loginPenyewa'])->name('login_penyewa');
+Route::get('/register/penyewa', [RegisterController::class, 'indexPenyewa']);
 Route::post('/register/penyewa', [RegisterController::class, 'registerPenyewa'])->name('register_penyewa');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

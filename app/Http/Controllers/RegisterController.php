@@ -25,7 +25,7 @@ class RegisterController extends Controller
         User::create([
             'id_penyewa' => $penyewa->id_penyewa,
             'username'   => $request->username,
-            'password'   => Hash::make($request->password),
+            'password'   => $request->password,
         ]);
         return redirect('/login/penyewa');
     }
