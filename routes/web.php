@@ -14,13 +14,17 @@ use App\Http\Controllers\PenyewaanController;
 
 Route::get('/', function () {
     return view('welcome');
-    });
+});
 
 // Authentication routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::get('/login/penyewa', [LoginController::class, 'indexPenyewa']);
+Route::post('/login/penyewa', [LoginController::class, 'loginPenyewa'])->name('login_penyewa');
+Route::get('/register/penyewa', [RegisterController::class, 'IndexPenyewa']);
+Route::post('/register/penyewa', [RegisterController::class, 'registerPenyewa'])->name('register_penyewa');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboardadm', [DashboardadmController::class, 'index'])->name('admin.dashboard');

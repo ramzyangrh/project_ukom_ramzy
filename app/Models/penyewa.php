@@ -12,7 +12,7 @@ class Penyewa extends Model
     protected $primaryKey = 'id_penyewa';
     public $incrementing = false;
     protected $keyType = 'string';
-
+    protected $table = 'penyewa';
     protected $fillable = [
         'id_penyewa',
     ];

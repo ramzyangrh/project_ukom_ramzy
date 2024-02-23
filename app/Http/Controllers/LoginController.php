@@ -15,7 +15,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'email'    => ['required', 'email'],
             'password' => ['required'],
         ]);
 
@@ -41,5 +41,23 @@ class LoginController extends Controller
     {
         Auth::logout();
         return redirect()->route('login');
+    }
+
+    function indexPenyewa(){
+        return view('auth.penyewa');
+    }
+
+    function loginPenyewa(Request $request)
+    {
+        $credentials = $request->validate([
+            'username' => ['required'],
+            'password' => ['required'],
+        ]);
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('dashboardpel.index');
+        }
+        return back()->withErrors([
+            'username' => 'The provided credentials do not match our records.',
+        ])->onlyInput('username');
     }
 }
