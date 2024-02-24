@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('penyewaan', function (Blueprint $table) {
             $table->char('id_penyewaan', 12)->primary();
-            $table->char('id_penyewa', 12);
+            $table->char('id_penyewa', 13);
             $table->unsignedInteger('id_mobil');
-            $table->char('id_pengembalian', 12);
-            $table->char('id_pembayaran', 12);
-            $table->char('id_tarif', 12);
+            $table->char('id_pengembalian', 12)->nullable();
+            $table->char('id_pembayaran', 12)->nullable();
+            $table->char('id_tarif', 12)->nullable();
             $table->dateTime('tanggal_mulai');
             $table->dateTime('tanggal_selesai');
-            $table->unsignedBigInteger('total_biaya');
+            $table->unsignedBigInteger('total_biaya')->default(0);
 
             $table->timestamps();
 

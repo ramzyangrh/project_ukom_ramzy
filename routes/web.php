@@ -71,5 +71,5 @@ Route::get('/detailmobilpel/{id}', [DetailmobilpelController::class, 'index'])->
 
 Route::get('/dashboardpel', [DashboardpelController::class, 'index'])->name('dashboardpel.index');
 
-Route::get('/penyewaan', [PenyewaanController::class, 'index'])->name('penyewaan');
-Route::post('/penyewaan', [PenyewaanController::class, 'penyewaan.strore'])->name('penyewaan.post');
+Route::get('/penyewaan/{id_mobil}', [PenyewaanController::class, 'index'])->name('penyewaan');
+Route::post('/penyewaan/{id_mobil}', [PenyewaanController::class, 'store'])->name('penyewaan.store');
