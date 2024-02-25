@@ -27,7 +27,7 @@ class PenyewaanController extends Controller
             'tanggal_selesai' => 'required|date|after:tanggal_mulai',
         ]);
         if ($validator->fails()) {
-            return redirect()->back()->setStatusCode(422);
+            return redirect()->back()->with('error', $validator->errors()->first());
         }
         // Simpan Data Penyewaan ke Database
         $penyewaan                  = new Penyewaan();
@@ -38,8 +38,8 @@ class PenyewaanController extends Controller
         $penyewaan->tanggal_selesai = $request->tanggal_selesai;
         // Tambahkan informasi lain yang diperlukan
         return $penyewaan->saveOrFail()
-            ? redirect()->route('dashboardpel.index')
-            : redirect()->back();
+            ? redirect()->route('dashboardpel.index')->with('success', 'Penyewaan Berhasil')
+            : redirect()->route('penyewaan')->with('error', 'Gagal menyewa mobil');
 
         // Notifikasi atau Konfirmasi kepada Pengguna
         // Contoh: Redirect ke halaman sukses

@@ -30,6 +30,12 @@
     <div class="container mt-5">
         <h1 class="text-center mb-5">Daftar Mobil</h1>
 
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="row mb-3">
             <div class="col-md-6">
                 <div class="input-group">

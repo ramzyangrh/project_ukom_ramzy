@@ -4,6 +4,11 @@
 
     <div class="container mt-5">
         <h1 class="text-center mb-5">Formulir Penyewaan</h1>
+        @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
         <form action="{{ route('penyewaan.store', $mobil->id_mobil) }}" method="POST">
             @csrf
             <div class="form-group">
@@ -16,7 +21,8 @@
             </div>
             <h1 class="text-center mt-3">Detail mobil yang akan disewa</h1>
             <div class="w-100 h-25">
-                <img src="{{ asset('images/' . $mobil->image) }}" class="rounded-top-5  shadow d-block mx-auto w-auto h-100" alt="Gambar Mobil">
+                <img src="{{ asset('images/' . $mobil->image) }}" class="rounded-top-5  shadow d-block mx-auto w-auto h-100"
+                    alt="Gambar Mobil">
             </div>
             <div class="card mb-4 shadow-sm">
                 <div class="card-body">
