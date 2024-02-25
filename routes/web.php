@@ -22,9 +22,9 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.authentica
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::get('/login/penyewa', [LoginController::class, 'indexPenyewa']);
-Route::post('auth/login/penyewa', [LoginController::class, 'loginPenyewa'])->name('login_penyewa');
+Route::post('auth/login/penyewa', [LoginController::class, 'loginPenyewa'])->name('login.penyewa');
 Route::get('/register/penyewa', [RegisterController::class, 'indexPenyewa']);
-Route::post('/register/penyewa', [RegisterController::class, 'registerPenyewa'])->name('register_penyewa');
+Route::post('/register/penyewa', [RegisterController::class, 'registerPenyewa'])->name('register.penyewa');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboardadm', [DashboardadmController::class, 'index'])->name('admin.dashboard');
@@ -71,5 +71,7 @@ Route::get('/detailmobilpel/{id}', [DetailmobilpelController::class, 'index'])->
 
 Route::get('/dashboardpel', [DashboardpelController::class, 'index'])->name('dashboardpel.index');
 
-Route::get('/penyewaan/{id_mobil}', [PenyewaanController::class, 'index'])->name('penyewaan');
+Route::get('/penyewaan/{id_mobil}', [PenyewaanController::class, 'create'])->name('penyewaan.create');
 Route::post('/penyewaan/{id_mobil}', [PenyewaanController::class, 'store'])->name('penyewaan.store');
+Route::get('/penyewaan', [PenyewaanController::class, 'index'])->name('penyewaan.list');
+Route::get('/penyewaan/saya/{id_penyewaan}', [PenyewaanController::class, 'detail'])->name('penyewaan.detail');

@@ -35,7 +35,11 @@
                 {{ session('success') }}
             </div>
         @endif
-
+        <div class="row mb-3">
+            <div class="col">
+                <a class="btn btn-primary" href="{{ route('penyewaan.list') }}">Lihat mobil sewaan anda</a>
+            </div>
+        </div>
         <div class="row mb-3">
             <div class="col-md-6">
                 <div class="input-group">
@@ -60,7 +64,7 @@
                                 <div class="btn-group">
                                     <a href="{{ route('detailmobilpel.index', $mobil->id_mobil) }}"
                                         class="btn btn-sm btn-outline-info">Detail</a>
-                                    <a href="{{ route('penyewaan', $mobil->id_mobil) }}"
+                                    <a href="{{ route('penyewaan.create', $mobil->id_mobil) }}"
                                         class="btn btn-sm btn-outline-primary">Sewa</a>
                                 </div>
                             </div>

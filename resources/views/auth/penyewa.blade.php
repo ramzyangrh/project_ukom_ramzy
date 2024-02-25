@@ -43,7 +43,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Login Penyewa') }}</div>
                     <div class="card-body">
-                        <form id="loginForm" action="{{ route('login_penyewa') }}" method="POST">
+                        <form id="loginForm" action="{{ route('login.penyewa') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <label for="username" class="form-label">{{ __('Username') }}</label>
@@ -66,7 +66,7 @@
                             </div>
                             <div class="mt-3 text-start register-text">
                                 Belum punya akun? <span class="register-link"><a
-                                        href="{{ route('register_penyewa') }}">{{ __('Daftar') }}</a></span>
+                                        href="{{ route('register.penyewa') }}">{{ __('Daftar') }}</a></span>
                             </div>
                         </form>
                     </div>

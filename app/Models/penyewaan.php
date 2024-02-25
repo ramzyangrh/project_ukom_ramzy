@@ -11,6 +11,12 @@ class penyewaan extends Model
     //penyewaan
     protected $table = 'penyewaan';
     protected $primaryKey = 'id_penyewaan';
+    protected $keyType = 'string';
+    public $incrementing = false;
     protected $fillable = ['tanggal_mulai', 'tanggal_selesai', 'total_biaya'];
     public $timestamps = true;
+    public function mobil()
+    {
+        return $this->belongsTo(mobil::class, 'id_mobil', 'id_mobil');
+    }
 }

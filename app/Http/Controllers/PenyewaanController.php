@@ -9,14 +9,27 @@ use Illuminate\Support\Facades\Validator;
 
 class PenyewaanController extends Controller
 {
-    function __construct()
+    public function __construct()
     {
         $this->middleware('headerSet')->only('store');
     }
+
     public function index()
     {
-        $data = ['mobil' => Mobil::query()->findOrFail(request('id_mobil'))];
+        $data = ['sewa' => Penyewaan::query()->where('id_penyewa', auth()->user()->id_penyewa)->with('mobil')->get()];
         return view('dashboardpel.penyewaan.index', $data);
+    }
+
+    public function detail($id_penyewaan)
+    {
+        $data = ['sewa' => Penyewaan::query()->where('id_penyewaan', $id_penyewaan)->with('mobil')->firstOrFail()];
+        return view('dashboardpel.penyewaan.detail', $data);
+    }
+
+    public function create()
+    {
+        $data = ['mobil' => Mobil::query()->findOrFail(request('id_mobil'))];
+        return view('dashboardpel.penyewaan.sewa', $data);
     }
 
     public function store(Request $request)
@@ -37,11 +50,10 @@ class PenyewaanController extends Controller
         $penyewaan->tanggal_mulai   = $request->tanggal_mulai;
         $penyewaan->tanggal_selesai = $request->tanggal_selesai;
         // Tambahkan informasi lain yang diperlukan
-        return $penyewaan->saveOrFail()
-            ? redirect()->route('dashboardpel.index')->with('success', 'Penyewaan Berhasil')
-            : redirect()->route('penyewaan')->with('error', 'Gagal menyewa mobil');
+        $penyewaan->saveOrFail();
 
         // Notifikasi atau Konfirmasi kepada Pengguna
         // Contoh: Redirect ke halaman sukses
+        return redirect()->route('dashboardpel.index')->with('success', 'Penyewaan Berhasil');
     }
 }

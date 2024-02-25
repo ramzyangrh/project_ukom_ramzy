@@ -33,7 +33,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Registrasi Penyewa') }}</div>
                     <div class="card-body">
-                        <form id="loginForm" method="POST" action="{{ route('register_penyewa') }}">
+                        <form id="loginForm" method="POST" action="{{ route('register.penyewa') }}">
                             @csrf
                             <div class="mb-3">
                                 <label for="username" class="form-label">{{ __('Username') }}</label>
