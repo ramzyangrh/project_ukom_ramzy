@@ -68,7 +68,7 @@
                         <small class="text-muted mt-3 d-block ">Dibuat pada: {{ $sewa->created_at }}</small>
                     </div>
                 </div>
-                <a href="{{ route('invoice.index', $sewa->id_penyewaan) }}" class="btn btn-primary">Lihat invoice</a>
+                <a target="_blank" href="{{ route('invoice.index', $sewa->id_penyewaan) }}" class="btn btn-primary">Lihat invoice</a>
             </div>
         </div>
     </div>
