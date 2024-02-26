@@ -102,4 +102,13 @@ class PenyewaanController extends Controller
 
         return redirect()->route('penyewaan.detail', $id_penyewaan)->with('success', 'Penyewaan berhasil diupdate');
     }
+    public function invoice(string $id_penyewaan)
+    {
+        $data = ['penyewaan' => Penyewaan::query()
+            ->where('id_penyewaan', $id_penyewaan)
+            ->where('id_penyewa', auth()->user()->id_penyewa)
+            ->firstOrFail()
+        ];
+        return view('dashboardpel.invoice', $data);
+    }
 }

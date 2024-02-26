@@ -77,4 +77,6 @@ Route::middleware(['auth', 'role:pelanggan'])->group(function () {
     Route::post('/penyewaan/{id_mobil}', [PenyewaanController::class, 'store'])->name('penyewaan.store');
     Route::get('/penyewaan', [PenyewaanController::class, 'index'])->name('penyewaan.list');
     Route::get('/penyewaan/saya/{id_penyewaan}', [PenyewaanController::class, 'detail'])->name('penyewaan.detail');
+
+    Route::get('/invoice/{id_penyewaan}', [PenyewaanController::class, 'invoice'])->name('invoice.index');
 });

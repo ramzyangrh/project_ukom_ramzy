@@ -45,7 +45,7 @@ class User extends Authenticatable
     
     public function penyewa()
     {
-        return $this->belongsTo(Penyewa::class, 'id_penyewa', 'username');
+        return $this->belongsTo(Penyewa::class, 'id_penyewa', 'id_penyewa');
     }
     
     public function pemilikMobil()

@@ -19,4 +19,8 @@ class penyewaan extends Model
     {
         return $this->belongsTo(mobil::class, 'id_mobil', 'id_mobil');
     }
+    public function penyewa()
+    {
+        return $this->belongsTo(penyewa::class, 'id_penyewa', 'id_penyewa');
+    }
 }
