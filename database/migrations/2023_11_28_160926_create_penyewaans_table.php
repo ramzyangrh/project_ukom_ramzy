@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('id_mobil');
             $table->char('id_pengembalian', 12)->nullable();
             $table->char('id_pembayaran', 12)->nullable();
-            $table->char('id_tarif', 12)->nullable();
+            $table->char('id_tarif', 13)->nullable();
             $table->dateTime('tanggal_mulai');
             $table->dateTime('tanggal_selesai');
             $table->unsignedBigInteger('total_biaya')->default(0);

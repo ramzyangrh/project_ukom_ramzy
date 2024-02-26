@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PembayaranController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardadmController;
 use App\Http\Controllers\DetailmobilownController;
@@ -49,7 +50,6 @@ Route::delete('/mobil/{no_polisi}', [MobilController::class, 'destroy'])->name('
 
 
 //route tambah mobil owner
-Route::get('/tambahmobilown', [TambahmobilownController::class, 'index']);
 Route::get('/tambahmobilown', [TambahmobilownController::class, 'index'])->name('tambahmobilown.index');
 Route::post('/tambahmobilown', [TambahmobilownController::class, 'store'])->name('tambahmobilown.store');
 Route::get('/tambahmobilown/create', [TambahmobilownController::class, 'create'])->name('tambahmobilown.create');
@@ -68,10 +68,13 @@ Route::get('/detailmobilown/{id}', [DetailmobilownController::class, 'index'])->
 Route::get('/detailmobilpel', [DetailmobilpelController::class, 'index'])->name('detailmobilpel.index');
 Route::get('/detailmobilpel/{id}', [DetailmobilpelController::class, 'index'])->name('detailmobilpel.index');
 
+Route::middleware(['auth', 'role:pelanggan'])->group(function () {
+    Route::get('/dashboardpel', [DashboardpelController::class, 'index'])->name('dashboardpel.index');
 
-Route::get('/dashboardpel', [DashboardpelController::class, 'index'])->name('dashboardpel.index');
-
-Route::get('/penyewaan/{id_mobil}', [PenyewaanController::class, 'create'])->name('penyewaan.create');
-Route::post('/penyewaan/{id_mobil}', [PenyewaanController::class, 'store'])->name('penyewaan.store');
-Route::get('/penyewaan', [PenyewaanController::class, 'index'])->name('penyewaan.list');
-Route::get('/penyewaan/saya/{id_penyewaan}', [PenyewaanController::class, 'detail'])->name('penyewaan.detail');
+    Route::get('/penyewaan/{id_mobil}', [PenyewaanController::class, 'create'])->name('penyewaan.create');
+    Route::get('/delete/penyewaan/{id_penyewaan}', [PenyewaanController::class, 'destroy'])->name('penyewaan.destroy');
+    Route::post('/update/penyewaan/{id_penyewaan}', [PenyewaanController::class, 'update'])->name('penyewaan.update');
+    Route::post('/penyewaan/{id_mobil}', [PenyewaanController::class, 'store'])->name('penyewaan.store');
+    Route::get('/penyewaan', [PenyewaanController::class, 'index'])->name('penyewaan.list');
+    Route::get('/penyewaan/saya/{id_penyewaan}', [PenyewaanController::class, 'detail'])->name('penyewaan.detail');
+});

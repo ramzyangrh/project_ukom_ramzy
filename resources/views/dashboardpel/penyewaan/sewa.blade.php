@@ -27,7 +27,10 @@
             <div class="card mb-4 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">{{ $mobil->merek }}</h5>
-                    <p class="card-text">{{ $mobil->tipe }}</p>
+                    <div class="card-text">
+                        <p>{{ $mobil->tipe }}</p>
+                        <p>Tarif per hari: <span class="d-block">{{ $mobil->tarif->nominal }}</span></p>
+                    </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <a href="{{ route('detailmobilpel.index', $mobil->id_mobil) }}"

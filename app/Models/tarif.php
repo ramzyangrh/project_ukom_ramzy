@@ -11,6 +11,13 @@ class tarif extends Model
     //tarif
     protected $table = 'tarif';
     protected $primaryKey = 'id_tarif';
-    protected $fillable = ['nominal'];
+    protected $keyType = 'string';
+    public $incrementing = false;
+    protected $fillable = ['nominal', 'id_tarif'];
     public $timestamps = true;
+
+    public function mobil()
+    {
+        return $this->hasOne(Mobil::class, 'id_tarif', 'id_tarif');
+    }
 }

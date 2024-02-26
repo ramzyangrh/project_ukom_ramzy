@@ -32,6 +32,10 @@
                             <input type="text" class="form-control" id="tipe" name="tipe" placeholder="Masukan Tipe Mobil" required>
                         </div>
                         <div class="form-group">
+                            <label for="tarif">Tarif per Hari</label>
+                            <input type="text" pattern="[0-9]+" class="form-control" id="tarif" name="tarif" placeholder="Masukan Tarif per Hari" required>
+                        </div>
+                        <div class="form-group">
                             <label for="status">Status Ketersediaan:</label>
                             <select class="form-control" id="status" name="status" required>
                                 <option value="" disabled selected>Pilih Status Ketersediaan</option>

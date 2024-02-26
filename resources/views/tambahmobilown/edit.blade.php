@@ -27,6 +27,10 @@
                             <label for="tipe">Tipe</label>
                             <input type="text" class="form-control" id="tipe" name="tipe" value="{{ $mobil->tipe }}" required>
                         </div>
+                        <div class="form-group">
+                            <label for="tarif">Tarif per Hari</label>
+                            <input type="text" value="{{ $mobil->tarif->nominal }}" pattern="[0-9]+" class="form-control" id="tarif" name="tarif" placeholder="Masukan Tarif per Hari" required>
+                        </div>
                         <div class="form-group" style="margin-bottom: 20px;">
                             <label for="status">Status</label>
                             <select class="form-control" id="status" name="status" required>
