@@ -17,7 +17,8 @@
         <div class="row">
             <div class="col">
                 <h1 class="fw-bolder mb-0 mt-3">Invoice</h1>
-                <h3 class="fs-6 text-muted">Invoice ID: {{ $penyewaan->id_penyewaan }} <span class="vr mx-1" style="height: 20px"></span> Date: {{ $penyewaan->created_at }}</h3>
+                <h3 class="fs-6 text-muted">Invoice ID: {{ $penyewaan->id_penyewaan }} <span class="vr mx-1"
+                        style="height: 20px"></span> Date: {{ $penyewaan->created_at }}</h3>
             </div>
         </div>
 
@@ -75,6 +76,7 @@
                             <th scope="col">Invoice ID</th>
                             <th scope="col">Tanggal Mulai</th>
                             <th scope="col">Tangal Selesai</th>
+                            <th scope="col">Periode Sewa</th>
                             <th scope="col">Total</th>
                         </tr>
                     </thead>
@@ -83,10 +85,14 @@
                             <th scope="row">{{ $penyewaan->id_penyewaan }}</th>
                             <td>{{ \Carbon\Carbon::parse($penyewaan->tanggal_mulai)->format('d-m-Y') }}</td>
                             <td>{{ \Carbon\Carbon::parse($penyewaan->tanggal_selesai)->format('d-m-Y') }}</td>
+                            <td>
+                                {{ \Carbon\Carbon::parse($penyewaan->tanggal_mulai)->diffInDays(\Carbon\Carbon::parse($penyewaan->tanggal_selesai)) }}
+                                hari
+                            </td>
                             <td>Rp. {{ $penyewaan->total_biaya }}</td>
                         </tr>
                         <tr>
-                            <td colspan="3">Status</td>
+                            <td colspan="4">Status</td>
                             @if ($penyewaan->id_pembayaran == null)
                                 <td class="text-danger">Belum dibayar</td>
                             @else
@@ -98,7 +104,7 @@
                 <small>Dibuat pada: {{ $penyewaan->created_at }}</small>
                 <small class="d-block text-danger">* Tolong bayarkan sebelum
                     <span class="fw-bolder fs-6">
-                        {{ \Carbon\Carbon::parse($penyewaan->tanggal_mulai)->format('j F, Y') }}
+                        {{ \Carbon\Carbon::parse($penyewaan->tanggal_mulai)->locale('id_ID')->isoFormat('dddd, D MMMM YYYY') }}
                     </span>
                     atau penyewaan akan dibatalkan</small>
             </div>
