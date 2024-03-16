@@ -40,7 +40,7 @@
                 <a class="btn btn-primary" href="{{ route('penyewaan.list') }}">Lihat mobil sewaan anda</a>
             </div>
         </div>
-        <div class="row mb-3">
+<!--         <div class="row mb-3">
             <div class="col-md-6">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Cari mobil...">
@@ -50,7 +50,7 @@
                 </div>
                 <small id="searchHelpBlock" class="form-text text-muted">Cari berdasarkan merek, model, atau tahun</small>
             </div>
-        </div>
+        </div> -->
 
         <div class="row">
             @foreach ($mobils as $mobil)
