@@ -22,7 +22,7 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.authenticate');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::get('/login/penyewa', [LoginController::class, 'indexPenyewa']);
+Route::get('/login/penyewa', [LoginController::class, 'indexPenyewa'])->name('login.penyewahalaman');
 Route::post('auth/login/penyewa', [LoginController::class, 'loginPenyewa'])->name('login.penyewa');
 Route::get('/register/penyewa', [RegisterController::class, 'indexPenyewa']);
 Route::post('/register/penyewa', [RegisterController::class, 'registerPenyewa'])->name('register.penyewa');
